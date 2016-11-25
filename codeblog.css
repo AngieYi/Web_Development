@@ -1,0 +1,65 @@
+/* -------------------- body>header>h1 --------------------*/
+header{
+    text-align: center;
+}
+h1 {
+    /*background-color: #d2ffb4;*/
+    font-family:"Comic Sans MS";
+    font-size: 2em;
+    margin:0px;
+    padding:20px;
+    text-align: center;
+}
+i{
+    font-size: 1em;
+}
+
+h1 a {
+    color: black;
+    text-decoration: none;
+}
+
+article {
+    border: 2px solid black;
+    border-radius: 20px;
+    padding: 20px;
+    background-color: #ebffe2;
+    line-height: 1.2;
+    margin: 40px auto 40px auto;
+    width: 1000px;
+}
+
+/* -------------------- body>main --------------------*/
+
+main {
+    font-family:"Comic Sans MS";
+    display:flex;
+    flex-direction:row;
+    flex-wrap:wrap;
+    padding-bottom:300px;
+}
+
+section {
+    background-color:#f6ff55;
+    width: 250px;
+    height: 270px;
+    margin-top:40px;
+    margin-left:40px;
+    margin-right:40px;
+}
+
+h2 {
+    font-size: 2em;
+    text-align: center;
+}
+
+
+
+/* -------------------- body> footer -------------------- */
+footer{
+    background-color: #ebffe2;
+    font-family:Arial;
+    color:black;
+    text-align: center;
+
+}

@@ -1,0 +1,200 @@
+<html>
+
+<head>
+<title>Hongyan's Code Blog</title>
+<meta charset="utf-8">
+    <!-- This is a 3rd-party stylesheet for Font Awesome: http://fontawesome.io/ -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" media="screen">
+
+<link rel="stylesheet" href="codeblog.css" media="screen">
+</head>
+
+<body>
+
+<header>
+    <h1>Hongyan (Angie) Yi's code blog</h1>
+    <i>Name: Hongyan Yi</i><br>
+    <i>ONID: yih</i><br>
+    <i>Github: AngieYi</i>
+</header>
+
+<main>
+
+<article>
+<h2>Assignment4</h2>
+<li>Link: https://github.com/OSU-CS290-F16/assignment-4-AngieYi</li>
+<li>
+I referenced Piazza information to solve difficult problems, especially select list style and html string.
+</li>
+<li>
+I've learnt from the process of solving the following problems.
+</li>
+
+<h3>
+1. the root path ('/')is routed to the index page, and the appropriate data is provided to fill out all details of the index page template (user selection list).
+</h3>
+<p>
+Solutions: Sever has a .json file which has the several users information in it, including name and things to do. Client enters root path('/') in the browser, means sending a request to the server, server gets this request, and response.render .json data to index-page.handlerbars. In index-page.handlerbars, there is user-select.handlebars,{{> user-select }}. In the user-select.handlebars, should set each .json 's key = each select option value, .json name = select option name.
+</p>
+
+<h3>
+2. the dynamic route '/notes/' routes to the corresponding user's notes page, and the appropriate data is provided to fill out all details of the notes page template (all of the user's pre‐defined notes﴿
+</h3>
+<p>
+Solutions: when the client select one user, index.js listened a change event, will handleUserSelection(event), since each option's value is .json's key, so event.target.value will be the key, after window.location.href = '/notes/' + event.target.value, the URL in the browser will be changed, when url changes, the sever will get the request.
+</p>
+<p>
+    According to different key (request.parameter.var_userkey), sever will response render this specific user's things to do (.json 's notes) to notes-page.handlerbars. In notes-page.handlerbars, there is a todo.handlebars {{> todo }}. Each note content corresponds to one todo note, so needs to loops all the possible notes in notes-page.handlerbars. In todo.handlebars, use some css style to decorate it, and put the notes content in right places.
+</p>
+
+<h3>
+3. The function generateTodoHTML() is correctly implemented, so that new todo notes can be added on the client.
+</h3>
+<p>
+Solution: In notes-page.handlerbar, there is an add-note-button-modal.handlerbars {{> add-note-button-modal}}.
+    When client click the add-note-button, will load add-note-modal, all the events are handled by index.js, after click Add ToDo,
+    then function insertNewTodo() will be called, in this function, there is generateTodoHTML(), written in generate-todo.js,
+    <span style="color:red">it uses the template on the client side to generate HTML for a new note to be added into the document.</span>
+</p>
+    <p>
+    The template was built when service started.
+    <ol>"build": "handlebars views/partials/todo.handlebars -f public/todo-template.js",</ol>
+    <ol>"prestart": "npm run build",</ol>
+     </p>
+<p>
+More specifically, in generate-todo.js
+</p>
+<ol>
+var todoTemplate = Handlebars.templates.todo; // makes that template available on the client side.
+</ol>
+
+<p>
+todoTemplate is actually a function. Needs to pass the correct data into that function to fill out the template.
+    The data format should keep the same as the format used in todo.handlebars. The todoTemplate(content) function will return an HTML string, and the HTML string is handled by insertNewTodo() in index.js.
+</p>
+
+<h3>
+</h3>
+<p>
+
+</p>
+</article>
+
+
+<article>
+<h2>Assignment3</h2>
+<li>Link: https://github.com/OSU-CS290-F16/assignment-3-AngieYi</li>
+<li>Suppose all the files in /public are in server side,use Node.js and some of its built-in modules to build a very simple web server</li>
+<h3>1. What was challenging about the assignment, and what specific kinds of problems did you have. How did you solve those problems?</h3>
+<p>I figured out these questions with the help of TA Lakshman.</p>
+<li>Q1:if giving a list of filename,how to get the content of these files?</li>
+<li>Q2:if get the content of the files, how to map them to different url?</li>
+<li>A: fs.readdir is asynchronous function,one parameter of the callback function is a list of filename(flist).
+    Here could use flist.forEach(),it is also an asynchronous function.it's input is the filename in the flist.
+    within this forEach, could use fs.readFile to get the content of each file,and use a global dictionary to save
+    the content,each key is the filename,each value is the content of this file.</li>
+
+<h3>2. What did you learn from the assignment? Were there any special insights you had? What did you find that you already knew?</h3>
+<p>I figured out these questions during instructor's office hour.</p>
+<li>Q1: Sometimes, when the root URL path (`/`) is visited. why it also wrote 404.html?(log write file)</li>
+<li>A: After log req.url, I know that because sometimes it writes favicon.ico,
+    then since favicon.ico is not in the folder, so it will choose to write 404.html</li>
+
+<li>Q2: What's the difference between synchronous and asynchronous function,take readFile and readFileSync as an example?</li>
+<li>A: fs.readFile(file[, options], callback)//code after it will execute immediately</li>
+<li>A: fs.readFileSync(file[, options])//code after it will not execute until readFileSync finishes</li>
+
+
+<h3>3. What kinds of resources were helpful for completing the assignment? Specific websites? Lectures? The class Piazza forum? The TAs? How did you use each of these resources?</h3>
+<p>Normally I get hint from instructor, when doing assignment using w3schools and google to figure out how to use specific things, then if have other questions goto TA's office hour.
+</p>
+
+<h3>4. What are one or two things you had to Google to complete the assignment?</h3>
+<p>I googled the syntax of some functions, such as res.writeHead,res.write
+</p>
+</article>
+
+
+<article>
+<h2>Assignment2</h2>
+<li>Iink: https://github.com/OSU-CS290-F16/assignment-2-AngieYi</li>
+
+<h3>1. What was challenging about the assignment, and what specific kinds of problems did you have. How did you solve those problems?</h3>
+<p>I met with four problems and get help from TA and classmates to solve.</p>
+<li>The dismiss button is not available for new added todo note</li>
+<li>all input field values could not be cleared</li>
+<li>Unsure about the alert effect</li>
+<li>Do not know how to publish the new html</li>
+
+
+<h3>2. What did you learn from the assignment? Were there any special insights you had? What did you find that you already knew?</h3>
+<p>I've learnt </p>
+<li>Each element could handle event by using addEventListener</li>
+<li>html could be changed by JavaScript, e.g. document.createElement("p");document.createTextNode("where: ");</li>
+<li>The node could be append and class could be add by elements.
+    spanWhere.appendChild(whereTextNode);
+    spanWhere.classList.add("where");</li>
+
+<li>The status of an element could be changed by .classList.add(class), .classList.remove(class)
+    e.g.
+    getBackdrop.classList.add("hidden");
+    getBackdrop.classList.remove("hidden");
+</li>
+
+<li>The input value could be cleared by using .value = ""</li>
+
+
+
+<h3>3. What kinds of resources were helpful for completing the assignment? Specific websites? Lectures? The class Piazza forum? The TAs? How did you use each of these resources?</h3>
+<p>Normally I get hint from instructor, when doing assignment using w3schools and google to figure out how to use specific things, then if have other questions goto TA's office hour.
+</p>
+
+<h3>4. What are one or two things you had to Google to complete the assignment?</h3>
+<p>I google how to clear the input value,website solution. getNoteModal.innerHTML = ""; getNoteModal.empty();
+    both of them are not useful in this assignment.Finally I get solution from TA.
+</p>
+</article>
+
+
+<article>
+<h2>Assignment1</h2>
+<li>Iink: https://github.com/OSU-CS290-F16/assignment-1-AngieYi</li>
+
+<h3>1. What challenges or troubles did you have completing this assignment. How did you solve them?</h3>
+<p>I have zero background of CSS, my html knowledge was learned more than ten years ago, both of them are not easy for me to pickup.
+Also CSS is so flexible,same effect could use different methods to solve,but it's hard to figure out which is the easiest and simple way.</p>
+
+
+<h3>2. What did you learn from this assignment? What did you already know?</h3>
+<p>I've learnt </p>
+<li>html(head , body(header(h1,nav) , main(section(h2,div)) , footer))</li>
+<li>relationship between CSS and html</li>
+<li>CSS selectors(element,class,id)</li>
+<li>box model(margin,boarder,padding,width,height)</li>
+<li>font(family,size,weight)</li>
+<li>color(color,background-color)</li>
+<li>text(indent,align)</li>
+<li>visibility(hidden,visible)
+<li>position(relative,absolute,fixed)
+<li>display(flex(flex-direction,flex-wrap),inline)</li>
+<li>flex box(flex container(main axis,cross axis),flex item)</li>
+<li>cursor</li>
+<li>@media(not yet used)</li>
+
+
+<h3>3. What resources (e.g. specific web articles, the class Piazza forum, the TAs) were most helpful in completing this assignment? How did you use these resources?</h3>
+<p>Normally I get hint from instructor, when doing assignment using w3schools and google to figure out how to use specific things, then if have other questions goto TA(Alex,Lakshman) office hour.
+    </p>
+</article>
+
+
+</main>
+
+<footer>
+    <div class="copyright">
+        Copyright &copy; 2016
+    </div>
+</footer>
+</body>
+
+</html>

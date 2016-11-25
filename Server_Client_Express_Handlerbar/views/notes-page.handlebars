@@ -1,0 +1,20 @@
+{{!--
+
+  You should modify this template so that any existing notes for a user are
+  displayed when this page is rendered.
+
+  --}}
+
+{{> header}}
+
+<main>
+
+{{#each todo_notes}}
+    {{>todo}}
+{{/each}}
+
+</main>
+
+{{> footer}}
+
+{{> add-note-button-modal}}
