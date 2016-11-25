@@ -1,0 +1,138 @@
+/* -------------------- body>header>h1 --------------------*/
+h1 {
+    background-color: #f6ff55;
+    font-family:"Comic Sans MS";
+    font-size: 4em;
+    margin:0px;
+    padding:20px;
+}
+
+h1 a {
+    color: black;
+    text-decoration: none;
+}
+
+/* -------------------- body>header>navigator ----------*/
+nav a{
+    font-family: Arial;
+    font-size: 2em;
+    color:white;                /* by default a's property will overwrite h1*/
+    text-decoration: none;     /* by default a's property will overwrite h1*/
+    padding:10px;
+}
+
+nav a:hover
+{
+    background-color: rgba(212, 211, 213, 0.6);
+}
+
+.navbar-list{
+    background-color: rgb(1, 1, 1);
+    margin:0px;
+    padding:10px;
+}
+
+.navbar-item{
+    display: inline;
+    padding-left: 10px;
+}
+
+.navbar-right{
+    float: right;  /* push log out go to right,according to different style */
+}
+
+/* -------------------- body>main --------------------*/
+
+main {
+    font-family:"Comic Sans MS";
+    display:flex;
+    flex-direction:row;
+    flex-wrap:wrap;
+    padding-bottom:300px;
+}
+
+section {
+    background-color:#f6ff55;
+    width: 250px;
+    height: 270px;
+    margin-top:40px;
+    margin-left:40px;
+    margin-right:40px;
+}
+
+h2 {
+    font-size: 2em;
+    text-align: center;
+}
+
+.todo{
+    position:relative;
+}
+
+.todo-body{
+    font-size:1.2em;
+    padding-left:15px;
+}
+
+.todo-list{
+    list-style-type: circle;
+}
+
+.where,.when,.who{
+    font-weight:bold;
+}
+
+section:hover .dismiss-button{
+    position: absolute;
+    top: 0px;
+    right: 10px;
+    font-size:2em;
+    font-family: Arial;
+    font-weight: normal;
+    visibility: visible;
+}
+
+.dismiss-button
+{
+    visibility: hidden;
+}
+
+.dismiss-button:hover
+{
+    cursor:pointer;
+}
+
+#add-note-button{
+    background-color:red;
+    color: white;
+    border-radius: 100%;
+    font-size: 3em;
+
+    position: fixed;
+    bottom: 55px;
+    right: 0;
+
+    width: 60px;
+    height: 60px;
+}
+
+#add-note-button:hover{
+    box-shadow: 3px 3px 3px #888888;
+    cursor:pointer;
+}
+
+/* -------------------- body> footer -------------------- */
+footer{
+    background-color: #000000;
+    font-family:Arial;
+    color:white;
+
+}
+
+.copyright{
+    font-size: 1.2em;
+    text-align:right;
+    padding-right:20px;
+    padding-top:8px;
+    padding-bottom:8px;
+}
