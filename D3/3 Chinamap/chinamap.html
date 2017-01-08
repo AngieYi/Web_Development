@@ -1,0 +1,89 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Map of China</title>
+    </head>
+
+    <style>
+
+    </style>
+
+    <body>
+        <script src="http://d3js.org/d3.v3.min.js"></script>
+
+        <script>
+            var width  = 1000;
+            var height = 1000;
+
+            // JavaScript, much like HTML, does not care about white spaces or new line breaks.
+            /*
+             D3.js Chain Syntax:
+             We start at the left and apply each .method or .operator to it.
+             So .select is applied to d3
+             .append is applied to d3.select("body")
+             etc...
+             The longer the chain the more things are being applied to that which is to the left of it.
+             The reason this works is because the operator method returns a selection.
+             Which means that not only does d3.select("body") return a selection, so does d3.select("body").append("svg")!
+             Because we can apply an operator method to selections, we can continue to apply operators to operators that returned selections.
+             Note - not all D3.js methods return a selection. However, most do so we can use chaining syntax to keep the code clean.
+             */
+            var svg = d3.select("body")
+                         .append("svg")
+                         .attr("width", width)
+                         .attr("height", height)
+                         .append("g") // ??
+                         .attr("transform", "translate(0,0)");
+
+            var projection = d3.geo.mercator()
+                                .center([107, 31])
+                                .scale(850)
+                                .translate([width/2, height/2]);
+
+            var path = d3.geo.path()
+                              .projection(projection);
+
+
+            var color = d3.scale.category20();
+
+
+            d3.json("china.geojson", function(error, root) {
+
+                if (error)
+                    return console.error(error);
+
+                console.log(root.features);
+
+                svg.selectAll("path")
+                    .data(root.features)
+                    .enter()
+                    .append("path")
+                    .attr("stroke","#000")
+                    .attr("stroke-width",1)
+
+                    .attr("fill", function(d,i){
+                        return color(i);
+                    })
+
+                    .attr("d", path )
+                    /* .attr("d", path ) is same as
+                     .attr("d",function(d){
+                                        return path(d);
+                                        }
+                          )
+                     */
+
+                    .on("mouseover",function(d,i){
+                        d3.select(this).attr("fill","yellow");
+                    })
+
+                    .on("mouseout",function(d,i){
+                        d3.select(this).attr("fill",color(i));
+                    });
+
+            });
+
+        </script>
+
+    </body>
+</html>
